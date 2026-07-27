@@ -1,0 +1,379 @@
+# SYSTEM_REQUIREMENTS
+
+> **Project:** Open Oncology Care Platform (OOCP)
+> **Repository:** `oocp-opensrp`
+> **Version:** 1.0.0
+> **Status:** Living Document
+> **Last Updated:** July 2026
+
+---
+
+# Table of Contents
+
+1. Purpose
+2. Scope
+3. Supported Operating Systems
+4. Hardware Requirements
+5. Software Requirements
+6. Required Development Tools
+7. Docker Requirements
+8. Java Requirements
+9. Database Requirements
+10. Network Requirements
+11. Storage Requirements
+12. Recommended Development Environment
+13. Existing Reference Environment
+14. Verification Checklist
+15. Future Requirements
+16. References
+
+---
+
+# 1. Purpose
+
+This document defines the minimum and recommended system requirements for developing, deploying, and testing the Open Smart Register Platform (OpenSRP) within the Open Oncology Care Platform (OOCP).
+
+It establishes a consistent development baseline to ensure contributors work in reproducible environments and reduce environment-specific issues.
+
+---
+
+# 2. Scope
+
+This document applies to:
+
+* Local development
+* Docker deployments
+* Testing environments
+* Continuous Integration (CI)
+* Future production deployments
+
+---
+
+# 3. Supported Operating Systems
+
+## Recommended
+
+* Ubuntu 24.04 LTS (or current supported LTS release)
+
+## Supported
+
+* Ubuntu 22.04 LTS
+* Debian 12+
+* Fedora (latest stable)
+* macOS (Apple Silicon and Intel)
+* Windows 11 using WSL2 (Ubuntu)
+
+Linux is the preferred development platform because it most closely matches typical production deployments.
+
+---
+
+# 4. Hardware Requirements
+
+## Minimum
+
+| Component | Requirement        |
+| --------- | ------------------ |
+| CPU       | 4 cores            |
+| Memory    | 8 GB RAM           |
+| Storage   | 100 GB SSD         |
+| Network   | Broadband Internet |
+
+---
+
+## Recommended
+
+| Component | Requirement                   |
+| --------- | ----------------------------- |
+| CPU       | 8 cores or more               |
+| Memory    | 16 GB RAM or higher           |
+| Storage   | 250 GB SSD or NVMe            |
+| Network   | Reliable high-speed broadband |
+
+---
+
+## Production (Future)
+
+Expected production infrastructure will be sized according to:
+
+* Number of healthcare facilities
+* Concurrent users
+* Patient population
+* Synchronisation frequency
+* Availability requirements
+
+---
+
+# 5. Software Requirements
+
+| Software               | Version                                 |
+| ---------------------- | --------------------------------------- |
+| Ubuntu                 | 24.04 LTS (preferred)                   |
+| Git                    | Latest stable                           |
+| Docker Engine          | 29.x or later                           |
+| Docker Compose         | v2.x or later                           |
+| Java                   | OpenJDK 17 LTS                          |
+| PostgreSQL             | 16.x (preferred)                        |
+| PostgreSQL (Supported) | 14+                                     |
+| Web Browser            | Chrome, Firefox or Edge (latest stable) |
+
+---
+
+# 6. Required Development Tools
+
+Every OOCP developer should install:
+
+* Git
+* Docker
+* Docker Compose
+* Java Development Kit (JDK 17)
+* Visual Studio Code (recommended)
+* GitHub CLI (optional)
+* Postman or Bruno for API testing
+* pgAdmin (recommended)
+* Draw.io Desktop (recommended)
+* Maven (if building Java services from source)
+
+Optional tools:
+
+* Portainer
+* Adminer
+* IntelliJ IDEA Community Edition
+* DBeaver
+* OpenSSL
+
+---
+
+# 7. Docker Requirements
+
+Docker is the official container platform for OOCP.
+
+Minimum versions:
+
+| Component      | Version      |
+| -------------- | ------------ |
+| Docker Engine  | 29.x+        |
+| Docker Compose | Version 2.x+ |
+
+Docker should support:
+
+* Docker Networks
+* Docker Volumes
+* Multi-container deployments
+* Docker Compose
+* Image caching
+* Persistent storage
+
+---
+
+# 8. Java Requirements
+
+OpenSRP is Java-based and requires:
+
+* OpenJDK 17 LTS
+* JAVA_HOME configured
+* PATH updated appropriately
+
+Verify installation:
+
+```bash
+java -version
+```
+
+Expected output:
+
+```text
+openjdk version "17"
+```
+
+---
+
+# 9. Database Requirements
+
+Primary database:
+
+* PostgreSQL
+
+Recommended version:
+
+* PostgreSQL 16
+
+Supported:
+
+* PostgreSQL 14+
+
+Responsibilities:
+
+* Application persistence
+* Transaction management
+* FHIR resource persistence (where applicable)
+* Audit information
+
+Database administration tools:
+
+* pgAdmin
+* Adminer
+* DBeaver
+
+---
+
+# 10. Network Requirements
+
+The development environment requires outbound internet access for:
+
+* GitHub repositories
+* Docker image downloads
+* Package repositories
+* Maven Central
+* Container registry access
+
+Local networking should allow communication between Docker containers over an isolated bridge network.
+
+---
+
+# 11. Storage Requirements
+
+Recommended available storage:
+
+| Purpose         | Suggested Space |
+| --------------- | --------------- |
+| Docker Images   | 30 GB           |
+| Docker Volumes  | 20 GB           |
+| Source Code     | 10 GB           |
+| Databases       | 50 GB           |
+| Build Artifacts | 20 GB           |
+
+Recommended free disk space:
+
+**100 GB or more**
+
+---
+
+# 12. Recommended Development Environment
+
+The reference OOCP development environment includes:
+
+* Ubuntu Linux
+* Docker Engine
+* Docker Compose
+* PostgreSQL
+* Java 17
+* Git
+* Visual Studio Code
+* Portainer
+* pgAdmin
+* OpenEMR
+* HAPI FHIR Server
+* Mirth Connect
+
+This environment enables end-to-end interoperability testing during development.
+
+---
+
+# 13. Existing Reference Environment
+
+The current validated development workstation is configured as follows:
+
+| Component        | Configuration                                   |
+| ---------------- | ----------------------------------------------- |
+| Operating System | Ubuntu Linux                                    |
+| Docker Engine    | 29.6.2                                          |
+| Docker Compose   | v5.3.1                                          |
+| Java             | OpenJDK 17                                      |
+| Git              | 2.54.0                                          |
+| Memory           | 16 GB RAM                                       |
+| Available RAM    | Approximately 8 GB available during development |
+| CPU              | 8 logical cores                                 |
+
+Existing running infrastructure includes:
+
+* OpenEMR
+* HAPI FHIR Server
+* PostgreSQL
+* pgAdmin
+* Adminer
+* Portainer
+* Mirth Connect
+
+This workstation serves as the reference environment for the initial OOCP deployment documentation.
+
+---
+
+# 14. Verification Checklist
+
+Before beginning deployment, verify the following:
+
+* Ubuntu installed
+* Git installed
+* Docker installed
+* Docker Compose installed
+* Java 17 installed
+* Internet connectivity available
+* Docker service running
+* Sufficient available RAM
+* Sufficient free disk space
+* GitHub repository cloned
+
+Useful verification commands:
+
+```bash
+docker --version
+
+docker compose version
+
+java -version
+
+git --version
+
+docker ps
+
+free -h
+
+nproc
+```
+
+---
+
+# 15. Future Requirements
+
+As the platform grows, additional requirements may include:
+
+* Kubernetes
+* Helm
+* Terraform
+* Prometheus
+* Grafana
+* Loki
+* OpenTelemetry
+* GitHub Actions Runners
+* Continuous Deployment infrastructure
+
+These technologies will be introduced in later phases of the project.
+
+---
+
+# 16. References
+
+This document is informed by:
+
+* Docker Documentation
+* Docker Compose Documentation
+* PostgreSQL Documentation
+* OpenJDK Documentation
+* OpenSRP Documentation
+* HAPI FHIR Documentation
+* OpenEMR Documentation
+* Ubuntu Server Documentation
+
+---
+
+# Revision History
+
+| Version | Date      | Description                          |
+| ------- | --------- | ------------------------------------ |
+| 1.0.0   | July 2026 | Initial system requirements document |
+
+---
+
+# Conclusion
+
+The Open Oncology Care Platform adopts a standardised development environment to ensure consistency, reproducibility, and reliability across all contributors. By defining clear hardware, software, networking, and tooling requirements, the project minimises environment-related issues and establishes a solid foundation for deploying OpenSRP and its supporting interoperability services.
